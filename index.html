@@ -202,6 +202,12 @@
             .polaroid { transform: rotate(0deg) !important; padding-bottom: 25px; }
             h1 { font-size: 2rem; }
         }
+        #bgMusic,
+#bgAnim,
+#fireworksCanvas,
+#burst {
+  pointer-events: none;
+}
     </style>
 </head>
 <body>
@@ -458,4 +464,13 @@ function startMusic(){
         function triggerFinalTransition() {
             const burst = document.getElementById('burst');
             burst.style.display = 'block';
-            burst.animate([{ width: '0', height: '0', opacity: 1 }, { width: '300vw', height: '300vw', opacity: 1 }], { dura
+            burst.animate([{ width: '0', height: '0', opacity: 1 }, { width: '300vw', height: '300vw', opacity: 1 }], { duration: 1000, easing: 'ease-in-out', fill: 'forwards' });
+            setTimeout(() => {
+                nextPage('pageFinal');
+                burst.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1000, fill: 'forwards' });
+                setTimeout(() => burst.style.display = 'none', 1000);
+            }, 900);
+        }
+    </script>
+</body>
+</html>
